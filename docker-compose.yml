@@ -1,0 +1,25 @@
+version: "3"
+services:
+  java-currency-exchange-rates:
+    build:
+      context: .
+    ports:
+      - "8080:8080"
+    networks:
+      - java-mysql
+    depends_on:
+      - mysqldb
+ 
+  mysqldb:
+    image: mysql:8
+    container_name: mysqldb
+    networks:
+      - java-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      - MYSQL_DATABASE=java_exchanges_rate  
+
+networks:
+  java-mysql:
+    name: java-mysql
