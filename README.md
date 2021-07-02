@@ -34,5 +34,5 @@ Linux :
 docker-compose up -d
 ```
 
-Si erreur au lancement : relancer la commande, l'initialisation de mysql est parfois trop longue pour que les micro-services puissent se connecter dessus directement.
+Si erreur au lancement : attendre environ 30 secondes et relancer la commande, l'initialisation de mysql est parfois trop longue pour que les micro-services puissent se connecter dessus directement.
 
