@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "date", "sourceDevise", "destinationDevise" }))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "date", "source_devise", "destination_devise" }))
 public class Exchange {
 
     @Id
