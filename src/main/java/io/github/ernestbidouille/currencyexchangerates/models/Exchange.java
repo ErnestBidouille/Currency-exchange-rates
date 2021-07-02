@@ -1,28 +1,29 @@
 package io.github.ernestbidouille.currencyexchangerates.models;
 
-import javax.persistence.*;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "date", "sourceDevise", "destinationDevise" }))
 public class Exchange {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(
-            updatable = false
-    )
+    @Column(updatable = false)
     private Long id;
-
     @ManyToOne
     private Devise sourceDevise;
-
     @ManyToOne
     private Devise destinationDevise;
-
     private Double rate;
-
-    @Column(
-            unique = true
-    )
     private Date date;
 
     public Exchange() {
