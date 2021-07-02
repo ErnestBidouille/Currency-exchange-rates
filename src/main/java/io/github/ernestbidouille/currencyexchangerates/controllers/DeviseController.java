@@ -9,39 +9,41 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.github.ernestbidouille.currencyexchangerates.models.Devise;
 import io.github.ernestbidouille.currencyexchangerates.services.DeviseService;
 
 @RestController
+@RequestMapping("/devises")
 public class DeviseController {
 
     @Autowired
     DeviseService deviseService;
 
-    @GetMapping("/devises")
+    @GetMapping()
     private List<Devise> getAllDevise() {
         return deviseService.getAllDevise();
     }
 
-    @GetMapping("/devises/{deviseId}")
+    @GetMapping("/{deviseId}")
     private Devise getDevise(@PathVariable("deviseId") String deviseId) {
         return deviseService.getDeviseById(deviseId);
     }
 
-    @DeleteMapping("/devises/{deviseId}")
+    @DeleteMapping("/{deviseId}")
     private void deleteDevise(@PathVariable("deviseId") String deviseId) {
         deviseService.delete(deviseId);
     }
 
-    @PostMapping("/devises")
+    @PostMapping()
     private String saveDevise(@RequestBody Devise devise) {
         deviseService.saveOrUpdate(devise);
         return devise.getName();
     }
 
-    @PutMapping("/devises")
+    @PutMapping()
     private Devise updateDevise(@RequestBody Devise devise) {
         deviseService.saveOrUpdate(devise);
         return devise;
