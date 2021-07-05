@@ -40,12 +40,11 @@ public class ExchangeService {
     }
 
     public Exchange getExchangeByDevises(Devise sourceDevise, Devise destinationDevise) {
-        return exchangeRepository.findOneByDevises(sourceDevise, destinationDevise);
+        return exchangeRepository.findOneByDevises(sourceDevise, destinationDevise).get(0);
     }
 
     public Rate getExchangeRateByDevises(Devise sourceDevise, Devise destinationDevise) {
-        Rate rate = new Rate(exchangeRepository.findOneByDevises(sourceDevise, destinationDevise).getRate());
-        return rate;
+        return new Rate(exchangeRepository.findOneByDevises(sourceDevise, destinationDevise).get(0).getRate());
     }
 
     public void saveOrUpdate(Exchange exchange) {
